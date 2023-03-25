@@ -16,6 +16,7 @@
 #include <limits>
 #include <optional>
 #include <set>
+#include <window/window.h>
 
 const uint32_t WIDTH = 800;
 const uint32_t HEIGHT = 600;
@@ -78,7 +79,7 @@ public:
     }
 
 private:
-    struct SDL_Window* _window{ nullptr };
+    Window* window;
 
     VkInstance instance;
     VkDebugUtilsMessengerEXT debugMessenger;
@@ -109,19 +110,7 @@ private:
     VkFence inFlightFence;
 
     void initWindow() {
-
-        SDL_Init(SDL_INIT_VIDEO);
-
-        SDL_WindowFlags window_flags = (SDL_WindowFlags)(SDL_WINDOW_VULKAN);
-
-        _window = SDL_CreateWindow(
-            "Vulkan Engine",
-            SDL_WINDOWPOS_UNDEFINED,
-            SDL_WINDOWPOS_UNDEFINED,
-            WIDTH,
-            HEIGHT,
-            window_flags
-        );
+        window = new Window( { WIDTH, HEIGHT }, "Renderer" );
     }
 
     void initVulkan() {
@@ -191,7 +180,7 @@ private:
         vkDestroySurfaceKHR(instance, surface, nullptr);
         vkDestroyInstance(instance, nullptr);
 
-        SDL_DestroyWindow(_window);
+        window->close();
     }
 
     void createInstance() {
@@ -215,11 +204,7 @@ private:
             VK_EXT_DEBUG_REPORT_EXTENSION_NAME,
             VK_EXT_DEBUG_UTILS_EXTENSION_NAME
         };
-        size_t additional_extension_count = extensions.size();
-        unsigned int count;
-        SDL_Vulkan_GetInstanceExtensions(_window, &count, nullptr);
-        extensions.resize(additional_extension_count + count);
-        SDL_Vulkan_GetInstanceExtensions(_window, &count, extensions.data() + additional_extension_count);
+        window->getInstanceExtension( extensions );
 
         createInfo.enabledExtensionCount = static_cast<uint32_t>(extensions.size());
         createInfo.ppEnabledExtensionNames = extensions.data();
@@ -263,7 +248,7 @@ private:
     }
 
     void createSurface() {
-        SDL_Vulkan_CreateSurface(_window, instance, &surface);
+        surface = window->createSurface( instance );
     }
 
     void pickPhysicalDevice() {
