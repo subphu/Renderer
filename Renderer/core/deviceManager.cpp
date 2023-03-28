@@ -109,6 +109,7 @@ void DeviceManager::createDevices( const VkSurfaceKHR surface ) {
 			mUsingDevice = mUsingDevice < i ? mUsingDevice : i;
 		}
 		mDevices.push_back( device );
+		mCleaner.push( [=]() { device->cleanup(); } );
 	}
 }
 

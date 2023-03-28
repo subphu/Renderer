@@ -14,16 +14,12 @@ SDLWindow::SDLWindow( const UInt2& size, const char* name ) {
 		SDL_WINDOW_VULKAN | SDL_WINDOW_RESIZABLE | SDL_WINDOW_MOUSE_CAPTURE
 	);
 	ASSERT_NULLPTR( mWindowPtr, "Failed to create SDL window" );
-
-	getInstanceExtension();
+	mCleaner.push( [=]() { SDL_DestroyWindow( mWindowPtr ); } );
 }
 
-void SDLWindow::close() {
-	vkDestroySurfaceKHR( mInstance, mSurface, nullptr );
-	SDL_DestroyWindow( mWindowPtr );
-}
+void SDLWindow::cleanup() { mCleaner.flush( "SDLWindow" ); }
 
-void SDLWindow::getInstanceExtension() {
+void SDLWindow::updateInstanceExtension() {
 	vector<const char*>& extensions = System::Settings()->instanceExtensions;
 	u32 count, prevCount = U32(extensions.size());
 	SDL_Vulkan_GetInstanceExtensions( mWindowPtr, &count, nullptr );
@@ -31,9 +27,9 @@ void SDLWindow::getInstanceExtension() {
 	SDL_Vulkan_GetInstanceExtensions( mWindowPtr, &count, extensions.data() + prevCount );
 }
 
-void SDLWindow::createSurface( const VkInstance& instance ) {
-	mInstance = instance;
+void SDLWindow::createSurface( const VkInstance instance ) {
 	SDL_Vulkan_CreateSurface( mWindowPtr, instance, &mSurface );
+	mCleaner.push( [=]() { vkDestroySurfaceKHR( instance, mSurface, nullptr ); } );
 }
 
 void SDLWindow::pollEvent() {

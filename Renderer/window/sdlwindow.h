@@ -12,9 +12,10 @@ public:
 	~SDLWindow();
 	SDLWindow( const UInt2& size, const char* name );
 
-	void close();
+	void cleanup();
 
-	void createSurface( const VkInstance& instance );
+	void updateInstanceExtension();
+	void createSurface( const VkInstance instance );
 
 	void pollEvent();
 
@@ -30,14 +31,14 @@ public:
 	const VkSurfaceKHR& getSurface();
 
 private:
+	Cleaner mCleaner{};
+
 	SDL_Window* mWindowPtr { nullptr };
 
 	VkSurfaceKHR mSurface = VK_NULL_HANDLE;
-	VkInstance mInstance = VK_NULL_HANDLE;
 
 	bool mResized = false;
 	bool mClosed = false;
 
-	void getInstanceExtension();
 };
 

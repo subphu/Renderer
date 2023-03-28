@@ -2,26 +2,36 @@
 
 #include <system.h>
 
-void App::run() {
+void App::start() {
 	init();
 	setup();
 	loop();
 	cleanup();
+	end();
 }
 
 void App::init() {
 	mSettingsPtr = new struct Settings();
 
-	mSdlWindowPtr = new SDLWindow( mSettingsPtr->windowSize, mSettingsPtr->appName );
 	mDeviceManagerPtr = new DeviceManager();
+	mSdlWindowPtr = new SDLWindow( mSettingsPtr->windowSize, mSettingsPtr->appName );
+
+	mSdlWindowPtr->updateInstanceExtension();
 	mDeviceManagerPtr->createInstance();
 
 	mSdlWindowPtr->createSurface( mDeviceManagerPtr->getInstance() );
 	mDeviceManagerPtr->createDevices( mSdlWindowPtr->getSurface() );
 
+	mCmdManagerPtr = new CmdManager();
+
+	System::setDeviceManager( mDeviceManagerPtr );
+	System::setWindow		( mSdlWindowPtr );
+	System::setCmdManager	( mCmdManagerPtr );
 }
 
-void App::setup() {}
+void App::setup() {
+	mCmdManagerPtr->createPool();
+}
 
 void App::loop() {
 	RenderTime renderTime{};
@@ -41,4 +51,11 @@ void App::loop() {
 	}
 }
 
-void App::cleanup() {}
+void App::cleanup() {
+	mCmdManagerPtr->cleanup();
+}
+
+void App::end() {
+	mSdlWindowPtr->cleanup();
+	mDeviceManagerPtr->cleanup();
+}
