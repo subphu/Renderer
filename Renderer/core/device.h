@@ -27,11 +27,14 @@ public:
 	
 	VkDevice		 getDevice();
 	VkPhysicalDevice getPhysicalDevice();
-	
-	VkQueue            getGraphicQueue();
-	VkQueue            getPresentQueue();
+
 	VkSurfaceFormatKHR getSurfaceFormat();
 	VkPresentModeKHR   getPresentMode();
+
+	VkQueue	getGraphicQueue();
+	VkQueue	getPresentQueue();
+	u32		getGraphicQueueIndex();
+	u32		getPresentQueueIndex();
 
 private:
 	Cleaner mCleaner{};

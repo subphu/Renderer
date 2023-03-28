@@ -27,13 +27,10 @@
     <ClCompile Include="core\device.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="system.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="physicalDevice.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="core\deviceManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="core\cmdManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -56,13 +53,13 @@
     <ClInclude Include="core\device.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="physicalDevice.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="core\deviceManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="settings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="core\cmdManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -175,7 +175,11 @@ void Device::waitPresentQueueIdle() { vkQueueWaitIdle( mPresentQueue ); }
 VkDevice		   Device::getDevice()		   { return mDevice; }
 VkPhysicalDevice   Device::getPhysicalDevice() { return mPhysicalDevice; }
 
-VkQueue			   Device::getGraphicQueue()   { return mGraphicQueue; }
-VkQueue			   Device::getPresentQueue()   { return mPresentQueue; }
-VkSurfaceFormatKHR Device::getSurfaceFormat()  { return mSurfaceFormat; }
-VkPresentModeKHR   Device::getPresentMode()    { return mPresentMode; }
+VkSurfaceFormatKHR Device::getSurfaceFormat() { return mSurfaceFormat; }
+VkPresentModeKHR   Device::getPresentMode() { return mPresentMode; }
+
+VkQueue	Device::getGraphicQueue()		{ return mGraphicQueue; }
+VkQueue	Device::getPresentQueue()		{ return mPresentQueue; }
+u32		Device::getGraphicQueueIndex()	{ return U32( mGraphicQueueIndex ); }
+u32		Device::getPresentQueueIndex()	{ return U32( mPresentQueueIndex ); }
+

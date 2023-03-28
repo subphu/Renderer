@@ -151,18 +151,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="core\cmdManager.cpp" />
     <ClCompile Include="core\deviceManager.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="physicalDevice.cpp" />
     <ClCompile Include="app.cpp" />
     <ClCompile Include="core\device.cpp" />
     <ClCompile Include="window\sdlwindow.cpp" />
-    <ClCompile Include="system.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="core\cmdManager.h" />
     <ClInclude Include="core\deviceManager.h" />
     <ClInclude Include="include.h" />
-    <ClInclude Include="physicalDevice.h" />
     <ClInclude Include="app.h" />
     <ClInclude Include="core\device.h" />
     <ClInclude Include="settings.h" />
