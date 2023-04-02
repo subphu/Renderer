@@ -12,7 +12,7 @@ namespace {
 		return devices;
 	}
 
-	const bool CheckLayerSupport( const vector<const char*>& layers ) {
+	const bool CheckLayerSupport( const vector<const c8*>& layers ) {
 		u32 count;
 		vkEnumerateInstanceLayerProperties( &count, nullptr );
 		vector<VkLayerProperties> availableLayers( count );
@@ -61,8 +61,8 @@ void DeviceManager::cleanup() { mCleaner.flush( "DeviceManager" ); }
 void DeviceManager::createInstance() {
 	LOG( "DeviceManager::createInstance" );
 	const VkApplicationInfo& appInfo = System::Settings()->appInfo;
-	const vector<const char*>& validationLayers = System::Settings()->validationLayers;
-	const vector<const char*>& instanceExtensions = System::Settings()->instanceExtensions;
+	const vector<const c8*>& validationLayers = System::Settings()->validationLayers;
+	const vector<const c8*>& instanceExtensions = System::Settings()->instanceExtensions;
 
 	bool isSupported = CheckLayerSupport( System::Settings()->validationLayers );
 	ASSERT_FALSE( isSupported, "validation layers requested, but not available!" );
@@ -97,7 +97,7 @@ void DeviceManager::createInstance() {
 
 void DeviceManager::createDevices( const VkSurfaceKHR surface ) {
 	LOG( "DeviceManager::createDevices" );
-	VkInstance instance = mInstance;
+	const VkInstance instance = mInstance;
 	vector<VkPhysicalDevice> physicalDevices  = GetPhysicalDevices( instance );
 
 	ASSERT_ZERO( physicalDevices.size(), "failed to find GPUs with Vulkan support!" );

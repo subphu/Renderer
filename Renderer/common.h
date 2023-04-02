@@ -12,8 +12,11 @@ typedef	uint32_t u32;
 typedef	uint64_t u64;
 typedef	float	 f32;
 typedef	double	 d64;
+typedef char	 c8;
+typedef unsigned char uc8;
 
 typedef VkExtent2D UInt2;
+typedef VkExtent3D UInt3;
 typedef glm::vec2 vec2;
 typedef glm::vec3 vec3;
 typedef glm::vec4 vec4;
@@ -45,6 +48,7 @@ template <typename T> struct Size { T width, height, depth; };
 #define PRINTLN4( v1, v2, v3, v4 ) PRINT4( v1, v2, v3, v4 ) << std::endl
 
 #define LOG(v) std::cout << "LOG::" << v << std::endl
+#define WAR(v) std::cout << "WAR::" << v << std::endl
 #define ERR(v) std::cout << "ERR::" << v << std::endl
 
 #define RUNTIME_ERROR(m) throw std::runtime_error(m)
@@ -60,6 +64,7 @@ template <typename T> struct Size { T width, height, depth; };
 
 #define VEC4_0 { 0.f, 0.f, 0.f, 0.f }
 #define VEC4_1 { 1.f, 1.f, 1.f, 1.f }
+#define VEC4_BLACK { 0.f, 0.f, 0.f, 1.f }
 
 struct Cleaner {
 	std::stack<std::function<void()>> stack;

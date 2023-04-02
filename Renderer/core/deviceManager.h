@@ -2,7 +2,6 @@
 
 #include <common.h>
 #include <core/device.h>
-#include <window/sdlwindow.h>
 
 class DeviceManager {
 
@@ -14,7 +13,7 @@ public:
 	void cleanup();
 
 	void createInstance();
-	void createDevices( VkSurfaceKHR surface );
+	void createDevices( const VkSurfaceKHR surface );
 
 	VkInstance	getInstance();
 	Device*		getDevice();

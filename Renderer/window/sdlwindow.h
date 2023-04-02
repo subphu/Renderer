@@ -10,7 +10,7 @@ class SDLWindow {
 
 public:
 	~SDLWindow();
-	SDLWindow( const UInt2& size, const char* name );
+	SDLWindow( const UInt2& size, const c8* name );
 
 	void cleanup();
 

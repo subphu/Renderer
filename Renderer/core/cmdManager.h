@@ -4,7 +4,6 @@
 #pragma once
 
 #include <common.h>
-#include <core/device.h>
 
 class CmdManager {
 
@@ -17,10 +16,10 @@ public:
 	void createPool();
 
 	VkCommandBuffer createCommandBuffer();
-	vector<VkCommandBuffer> createCommandBuffers( u32 size );
+	vector<VkCommandBuffer> createCommandBuffers( const u32 size );
 
-	void beginSingleTimeCommands( VkCommandBuffer commandBuffer );
-	void endSingleTimeCommands( VkCommandBuffer commandBuffer );
+	void beginSingleTimeCommands( const VkCommandBuffer commandBuffer );
+	void endSingleTimeCommands( const VkCommandBuffer commandBuffer );
 
 
 private:

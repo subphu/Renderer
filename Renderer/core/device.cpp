@@ -63,7 +63,7 @@ namespace {
 		return supported;
 	}
 
-	const bool CheckDeviceExtensionSupport( const VkPhysicalDevice physicalDevice, const vector<const char*>& extensions ) {
+	const bool CheckDeviceExtensionSupport( const VkPhysicalDevice physicalDevice, const vector<const c8*>& extensions ) {
 		u32 count;
 		vkEnumerateDeviceExtensionProperties( physicalDevice, nullptr, &count, nullptr );
 		vector<VkExtensionProperties> availableExtensions( count );
@@ -98,13 +98,11 @@ void Device::cleanup() { mCleaner.flush( "Device" ); }
 bool Device::isSupported( const VkSurfaceKHR surface ) {
 	LOG("Device::setup");
 	const VkPhysicalDeviceFeatures& deviceFeatures = System::Settings()->deviceFeatures;
-	const vector<const char*>& deviceExtensions = System::Settings()->deviceExtensions;
+	const vector<const c8*>& deviceExtensions = System::Settings()->deviceExtensions;
 
 	vkGetPhysicalDeviceProperties( mPhysicalDevice, &mProperties );
 	vkGetPhysicalDeviceMemoryProperties( mPhysicalDevice, &mMemoryProperties );
 	vkGetPhysicalDeviceSurfaceCapabilitiesKHR( mPhysicalDevice, surface, &mSurfaceCapabilities );
-
-	PRINTLN2( "- Device: ", mProperties.deviceName );
 
 	mGraphicQueueIndex	= FindGraphicQueueIndex( mPhysicalDevice );
 	mPresentQueueIndex	= FindPresentQueueIndex( mPhysicalDevice, surface );
@@ -116,14 +114,20 @@ bool Device::isSupported( const VkSurfaceKHR surface ) {
 	bool featureSupported	= CheckFeatureSupport( mPhysicalDevice, deviceFeatures );
 	bool extensionSupported	= CheckDeviceExtensionSupport( mPhysicalDevice, deviceExtensions );
 
+	PRINTLN2( "- Device: ", mProperties.deviceName );
+	PRINTLN( "Available surface formats" );
+	for (const auto& format : mSurfaceFormats) PRINTLN2( format.format, format.colorSpace );
+	PRINTLN( "Available present modes" );
+	for (const auto& mode	: mPresentModes	 ) PRINTLN( mode );
+
 	mSupported = swapchainAdequate && queueSupported && featureSupported && extensionSupported;
 	return mSupported;
 }
 
 void Device::createDevice() {
 	const VkPhysicalDeviceFeatures& deviceFeatures = System::Settings()->deviceFeatures;
-	const vector<const char*>& deviceExtensions = System::Settings()->deviceExtensions;
-	const vector<const char*>& validationLayers = System::Settings()->validationLayers;
+	const vector<const c8*>& deviceExtensions = System::Settings()->deviceExtensions;
+	const vector<const c8*>& validationLayers = System::Settings()->validationLayers;
 	const f32 queuePriorities = 1.0f;
 	const vector<VkDeviceQueueCreateInfo> queueInfos = CreateQueueInfos( { U32( mGraphicQueueIndex ), U32( mPresentQueueIndex ) }, queuePriorities );
 
@@ -137,7 +141,7 @@ void Device::createDevice() {
 	deviceInfo.queueCreateInfoCount		= U32( queueInfos.size() );
 	deviceInfo.pQueueCreateInfos		= queueInfos.data();
 
-	VkResult result = vkCreateDevice( mPhysicalDevice, &deviceInfo, nullptr, &mDevice );
+	const VkResult result = vkCreateDevice( mPhysicalDevice, &deviceInfo, nullptr, &mDevice );
 	ASSERT_VKERROR( result, "failed to create logical device" );
 	mCleaner.push( [=]() { vkDestroyDevice( mDevice, nullptr ); } );
 
@@ -169,12 +173,27 @@ void Device::useSurfaceFormat( const VkSurfaceFormatKHR surfaceFormat ) {
 	mSurfaceFormat = mSurfaceFormats[0];
 }
 
+u32 Device::findMemoryTypeIndex( const u32 typeFilter, const VkMemoryPropertyFlags flags ) {
+	for (u32 i = 0; i < mMemoryProperties.memoryTypeCount; i++) {
+		if (typeFilter & (1 << i) && (mMemoryProperties.memoryTypes[i].propertyFlags & flags) == flags)
+			return i;
+	}
+	RUNTIME_ERROR( "failed to find suitable memory type!" );
+}
+
+VkFormatProperties Device::getFormatProperties( const VkFormat format ) {
+	VkFormatProperties formatProperties;
+	vkGetPhysicalDeviceFormatProperties( mPhysicalDevice, format, &formatProperties );
+	return formatProperties;
+}
+
 void Device::waitIdle() { vkDeviceWaitIdle( mDevice ); }
 void Device::waitPresentQueueIdle() { vkQueueWaitIdle( mPresentQueue ); }
 
 VkDevice		   Device::getDevice()		   { return mDevice; }
 VkPhysicalDevice   Device::getPhysicalDevice() { return mPhysicalDevice; }
 
+VkSurfaceCapabilitiesKHR Device::getSurfaceCapabilities() { return mSurfaceCapabilities; }
 VkSurfaceFormatKHR Device::getSurfaceFormat() { return mSurfaceFormat; }
 VkPresentModeKHR   Device::getPresentMode() { return mPresentMode; }
 

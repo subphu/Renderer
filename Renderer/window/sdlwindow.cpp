@@ -3,7 +3,7 @@
 
 SDLWindow::~SDLWindow() {}
 
-SDLWindow::SDLWindow( const UInt2& size, const char* name ) {
+SDLWindow::SDLWindow( const UInt2& size, const c8* name ) {
 	SDL_Init( SDL_INIT_VIDEO );
 	mWindowPtr = SDL_CreateWindow(
 		name,
@@ -20,7 +20,7 @@ SDLWindow::SDLWindow( const UInt2& size, const char* name ) {
 void SDLWindow::cleanup() { mCleaner.flush( "SDLWindow" ); }
 
 void SDLWindow::updateInstanceExtension() {
-	vector<const char*>& extensions = System::Settings()->instanceExtensions;
+	vector<const c8*>& extensions = System::Settings()->instanceExtensions;
 	u32 count, prevCount = U32(extensions.size());
 	SDL_Vulkan_GetInstanceExtensions( mWindowPtr, &count, nullptr );
 	extensions.resize( SIZE_T( count ) + SIZE_T( prevCount ) );

@@ -24,10 +24,14 @@ public:
 
 	void waitIdle();
 	void waitPresentQueueIdle();
-	
+
+	u32 findMemoryTypeIndex( const u32 typeFilter, const VkMemoryPropertyFlags flags );
+	VkFormatProperties getFormatProperties( const VkFormat format );
+
 	VkDevice		 getDevice();
 	VkPhysicalDevice getPhysicalDevice();
 
+	VkSurfaceCapabilitiesKHR getSurfaceCapabilities();
 	VkSurfaceFormatKHR getSurfaceFormat();
 	VkPresentModeKHR   getPresentMode();
 
