@@ -153,17 +153,25 @@
   <ItemGroup>
     <ClCompile Include="core\cmdManager.cpp" />
     <ClCompile Include="core\deviceManager.cpp" />
+    <ClCompile Include="renderpass\renderpass.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="app.cpp" />
     <ClCompile Include="core\device.cpp" />
+    <ClCompile Include="renderpass\rpPresent.cpp" />
+    <ClCompile Include="resources\frame.cpp" />
+    <ClCompile Include="resources\image.cpp" />
     <ClCompile Include="window\sdlwindow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core\cmdManager.h" />
     <ClInclude Include="core\deviceManager.h" />
+    <ClInclude Include="renderpass\renderpass.h" />
     <ClInclude Include="include.h" />
     <ClInclude Include="app.h" />
     <ClInclude Include="core\device.h" />
+    <ClInclude Include="renderpass\rpPresent.h" />
+    <ClInclude Include="resources\frame.h" />
+    <ClInclude Include="resources\image.h" />
     <ClInclude Include="settings.h" />
     <ClInclude Include="system.h" />
     <ClInclude Include="common.h" />
