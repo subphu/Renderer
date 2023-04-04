@@ -78,9 +78,4 @@ private:
 	VkBindImageMemoryInfo mBindImageInfo{};
 	vector<VkDescriptorImageInfo> mDescriptorInfos;
 		
-	uint32_t MaxMipLevel(int width, int height);
-	static unsigned int GetChannelSize(VkFormat format);
-	
-	void cmdCall(void (Image::*cmdFunc)(VkCommandBuffer));
-	
 };

@@ -3,18 +3,18 @@
 #include <common.h>
 
 struct Settings {
-	const char* appName = "Renderer";
+	const c8* appName = "Renderer";
 	UInt2 windowSize = { 800, 600 };
 
 	VkApplicationInfo appInfo{};
 	VkPhysicalDeviceFeatures deviceFeatures{};
 
-	vector<const char*> validationLayers = { "VK_LAYER_KHRONOS_validation" };
-	vector<const char*> deviceExtensions = { VK_KHR_SWAPCHAIN_EXTENSION_NAME, VK_EXT_SHADER_VIEWPORT_INDEX_LAYER_EXTENSION_NAME };
-	vector<const char*> instanceExtensions = { VK_EXT_DEBUG_REPORT_EXTENSION_NAME, VK_EXT_DEBUG_UTILS_EXTENSION_NAME };
+	vector<const c8*> validationLayers = { "VK_LAYER_KHRONOS_validation" };
+	vector<const c8*> deviceExtensions = { VK_KHR_SWAPCHAIN_EXTENSION_NAME, VK_EXT_SHADER_VIEWPORT_INDEX_LAYER_EXTENSION_NAME };
+	vector<const c8*> instanceExtensions = { VK_EXT_DEBUG_REPORT_EXTENSION_NAME, VK_EXT_DEBUG_UTILS_EXTENSION_NAME };
 
 	VkPresentModeKHR defaultPresentMode = VK_PRESENT_MODE_IMMEDIATE_KHR;
-	VkSurfaceFormatKHR defaultSurfaceFormat = { VK_FORMAT_R8G8B8_SRGB, VK_COLOR_SPACE_SRGB_NONLINEAR_KHR };
+	VkSurfaceFormatKHR defaultSurfaceFormat = { VK_FORMAT_B8G8R8A8_UNORM, VK_COLOR_SPACE_SRGB_NONLINEAR_KHR };
 
 	Settings() {
 		appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;

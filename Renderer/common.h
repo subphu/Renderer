@@ -34,6 +34,7 @@ template <typename T> using vector = std::vector<T>;
 template <typename T> struct Size { T width, height, depth; };
 
 #define F32(v)	static_cast<f32>(v)
+#define S32(v)	static_cast<s32>(v)
 #define U32(v)	static_cast<u32>(v)
 #define SIZE_T(v)	static_cast<size_t>(v)
 

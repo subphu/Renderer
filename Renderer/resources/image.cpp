@@ -18,15 +18,15 @@ namespace {
 	}
 
 	const u32 CalculateMaxMipLevel( const UInt3 size ) {
-		return fmin( UINT32( std::floor( std::log2( max( size.width, size.height ) ) ) ) + 1, 7 );
+		return U32( fmin( UINT32( std::floor( std::log2( max( size.width, size.height ) ) ) ) + 1, 7 ) );
 	}
 
 	void GenerateMipMap( const VkCommandBuffer cmdBuffer, VkImageMemoryBarrier barrier, const UInt3 size, const u32 mipLevels ) {
-		VkOffset3D maxOffset = { size.width, size.height, size.depth };
+		VkOffset3D maxOffset = { S32(size.width), S32(size.height), S32(size.depth) };
 		for (u32 i = 0; i < mipLevels - 1; i++) {
-			VkOffset3D halfMaxOffset = { ceil( maxOffset.x / 2.0f ),
-										 ceil( maxOffset.y / 2.0f ),
-										 ceil( maxOffset.z / 2.0f ) };
+			VkOffset3D halfMaxOffset = { S32( ceil( maxOffset.x / 2.0f ) ),
+										 S32( ceil( maxOffset.y / 2.0f ) ),
+										 S32( ceil( maxOffset.z / 2.0f ) ) };
 
 			barrier.subresourceRange.baseMipLevel = i;
 			barrier.oldLayout = VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL;
@@ -101,8 +101,8 @@ void Image::calculateMipLevel() {
 void Image::cleanup() { mCleaner.flush("Image"); }
 
 void Image::create( const UInt2 size, const VkFormat format ) {
-	UInt3 size = { size.height, size.width, 1 };
-	create( size, format );
+	UInt3 size3 = { size.height, size.width, 1 };
+	create( size3, format );
 }
 
 void Image::create( const UInt3 size, const VkFormat format ) {
@@ -121,19 +121,19 @@ void Image::create( const VkImage image, const VkFormat format ) {
 }
 
 void Image::create( const string filepath, const VkFormat format ) {
-	int width, height, channels;
+	//int width, height, channels;
 	//mRawData = STBI::LoadImage( filepath, &width, &height, &channels );
 	//mChannel = channels;
-	UInt3 size = { U32( width ), U32( height ), 1 };
-	create( size, format );
+	//UInt3 size = { U32( width ), U32( height ), 1 };
+	//create( size, format );
 }
 
 void Image::createHDR( const string filepath, const VkFormat format ) {
-	int width, height, channels;
+	//int width, height, channels;
 	//mRawHDR = STBI::LoadHDR( filepath, &width, &height, &channels );
 	//mChannel = channels;
-	UInt3 size = { U32( width ), U32( height ), 1 };
-	create( size, format );
+	//UInt3 size = { U32( width ), U32( height ), 1 };
+	//create( size, format );
 }
 
 void Image::createImage() {
@@ -164,9 +164,9 @@ void Image::createImageViews() {
 	mImageViewInfo.subresourceRange.levelCount = mipLevels;
 }
 
-void Image::createSampler( VkSamplerCreateInfo samplerInfo = GetDefaultSamplerInfo() ) {
+void Image::createSampler( VkSamplerCreateInfo samplerInfo ) {
 	LOG("Image::createSampler");
-	samplerInfo.maxLod = mImageInfo.mipLevels;
+	samplerInfo.maxLod = F32( mImageInfo.mipLevels );
 	const VkDevice device = System::Device()->getDevice();
 	const VkResult result = vkCreateSampler(device, &samplerInfo, nullptr, &mSampler);
 	ASSERT_VKERROR(result, "failed to create texture sampler!");
@@ -206,11 +206,11 @@ void Image::allocateImageMemory() {
 	mBindImageInfo.memory = mImageMemory;
 }
 
-void Image::clearColorImage(const VkCommandBuffer cmdBuffer, const VkClearColorValue clearColor) {
+void Image::clearColorImage( const VkCommandBuffer cmdBuffer, const VkClearColorValue clearColor ) {
 	vkCmdClearColorImage(cmdBuffer, mImage, mImageLayout, &clearColor, 1, &mImageViewInfo.subresourceRange);
 }
 
-void Image::generateMipmaps(VkCommandBuffer cmdBuffer) {
+void Image::generateMipmaps( VkCommandBuffer cmdBuffer ) {
 	LOG("Image::cmdGenerateMipmaps");
 	Device* devicePtr = System::Device();
 	
