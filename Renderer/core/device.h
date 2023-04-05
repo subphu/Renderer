@@ -22,8 +22,8 @@ public:
 	void usePresentMode( const VkPresentModeKHR mode );
 	void useSurfaceFormat( const VkSurfaceFormatKHR surfaceFormat );
 
-	void waitIdle();
-	void waitPresentQueueIdle();
+	void waitDeviceIdle();
+	void waitQueueIdle();
 
 	u32 findMemoryTypeIndex( const u32 typeFilter, const VkMemoryPropertyFlags flags );
 	VkFormatProperties getFormatProperties( const VkFormat format );

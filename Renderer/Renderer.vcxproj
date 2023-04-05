@@ -153,6 +153,7 @@
   <ItemGroup>
     <ClCompile Include="core\cmdManager.cpp" />
     <ClCompile Include="core\deviceManager.cpp" />
+    <ClCompile Include="core\swapchain.cpp" />
     <ClCompile Include="renderpass\renderpass.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="app.cpp" />
@@ -165,6 +166,7 @@
   <ItemGroup>
     <ClInclude Include="core\cmdManager.h" />
     <ClInclude Include="core\deviceManager.h" />
+    <ClInclude Include="core\swapchain.h" />
     <ClInclude Include="renderpass\renderpass.h" />
     <ClInclude Include="include.h" />
     <ClInclude Include="app.h" />

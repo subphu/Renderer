@@ -11,15 +11,15 @@ class Renderpass {
 
 public:
 	struct Subpass {
-		VkSubpassDescription subpassDesc;
-		VkAttachmentReference depthAttachmentRef;
+		VkSubpassDescription subpassDesc{};
+		VkAttachmentReference* depthAttachmentRef;
 		vector<VkAttachmentReference> colorAttachmentRefs;
 		vector<VkAttachmentReference> inputAttachmentRefs;
 		vector<u32> preserveAttachmentRefs;
 
 		void setupDesc() {
 			subpassDesc.pipelineBindPoint		= VK_PIPELINE_BIND_POINT_GRAPHICS;
-			subpassDesc.pDepthStencilAttachment = &depthAttachmentRef;
+			subpassDesc.pDepthStencilAttachment = depthAttachmentRef;
 			subpassDesc.pColorAttachments		= colorAttachmentRefs.data();
 			subpassDesc.colorAttachmentCount	= U32( colorAttachmentRefs.size() );
 			subpassDesc.pInputAttachments		= inputAttachmentRefs.data();

@@ -23,6 +23,7 @@ void App::init() {
 	mDeviceManagerPtr->createDevices( mSdlWindowPtr->getSurface() );
 
 	mCmdManagerPtr = new CmdManager();
+	mSwapchain = new Swapchain();
 
 	System::setDeviceManager( mDeviceManagerPtr );
 	System::setWindow		( mSdlWindowPtr );
@@ -31,6 +32,8 @@ void App::init() {
 
 void App::setup() {
 	mCmdManagerPtr->createPool();
+	mSwapchain->create( mSdlWindowPtr->getSurface() );
+	mSwapchain->createFrames();
 }
 
 void App::loop() {

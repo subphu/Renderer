@@ -45,6 +45,9 @@
     <ClCompile Include="renderpass\rpPresent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="core\swapchain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="window\sdlwindow.h">
@@ -84,6 +87,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="renderpass\rpPresent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="core\swapchain.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

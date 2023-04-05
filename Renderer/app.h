@@ -4,6 +4,7 @@
 #include <window/sdlwindow.h>
 #include <core/deviceManager.h>
 #include <core/cmdManager.h>
+#include <core/swapchain.h>
 
 class App {
 
@@ -18,11 +19,12 @@ private:
 	void loop();
 	void cleanup();
 	void end();
-
+	
+	Settings*		mSettingsPtr	  = nullptr;
 	SDLWindow*		mSdlWindowPtr	  = nullptr;
 	DeviceManager*	mDeviceManagerPtr = nullptr;
-	CmdManager*		mCmdManagerPtr	 = nullptr;
-	Settings*		mSettingsPtr	  = nullptr;
+	CmdManager*		mCmdManagerPtr	  = nullptr;
+	Swapchain*		mSwapchain		  = nullptr;
 
 };
 

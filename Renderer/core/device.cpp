@@ -187,8 +187,8 @@ VkFormatProperties Device::getFormatProperties( const VkFormat format ) {
 	return formatProperties;
 }
 
-void Device::waitIdle() { vkDeviceWaitIdle( mDevice ); }
-void Device::waitPresentQueueIdle() { vkQueueWaitIdle( mPresentQueue ); }
+void Device::waitDeviceIdle() { vkDeviceWaitIdle( mDevice ); }
+void Device::waitQueueIdle() { vkQueueWaitIdle( mPresentQueue ); }
 
 VkDevice		   Device::getDevice()		   { return mDevice; }
 VkPhysicalDevice   Device::getPhysicalDevice() { return mPhysicalDevice; }

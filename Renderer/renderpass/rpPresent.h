@@ -8,7 +8,7 @@ public:
 	~RpPresent();
 	RpPresent();
 
-	void setActiveFrame( const u32 idx );
+	void useFrame( const u32 idx );
 	void createFrames( const vector<VkImage> images, const UInt2 size );
 
 	void setupAttachment() override;
