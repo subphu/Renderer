@@ -9,6 +9,16 @@ struct Settings {
 	VkApplicationInfo appInfo{};
 	VkPhysicalDeviceFeatures deviceFeatures{};
 
+	string spirvExt		= ".spv";
+;
+	string glslcMacDir	= "Libraries/VulkanSDK/Bin/glslc";
+	string glslcWinDir	= "Libraries/VulkanSDK/Bin/glslc.exe";
+
+	string shaderDir	= "Renderer/shaders/";
+	string spirvDir		= "Resources/spirv/";
+	string modelDir		= "Resources/model/";
+	string textureDir	= "Resources/texture/";
+
 	vector<const c8*> validationLayers = { "VK_LAYER_KHRONOS_validation" };
 	vector<const c8*> deviceExtensions = { VK_KHR_SWAPCHAIN_EXTENSION_NAME, VK_EXT_SHADER_VIEWPORT_INDEX_LAYER_EXTENSION_NAME };
 	vector<const c8*> instanceExtensions = { VK_EXT_DEBUG_REPORT_EXTENSION_NAME, VK_EXT_DEBUG_UTILS_EXTENSION_NAME };
@@ -31,5 +41,6 @@ struct Settings {
 		deviceFeatures.fragmentStoresAndAtomics = VK_TRUE;
 		deviceFeatures.shaderStorageImageExtendedFormats = VK_TRUE;
 	}
+
 };
 

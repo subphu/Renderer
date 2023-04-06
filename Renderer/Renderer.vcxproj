@@ -92,7 +92,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -108,7 +108,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -124,7 +124,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -140,7 +140,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -154,6 +154,7 @@
     <ClCompile Include="core\cmdManager.cpp" />
     <ClCompile Include="core\deviceManager.cpp" />
     <ClCompile Include="core\swapchain.cpp" />
+    <ClCompile Include="file.cpp" />
     <ClCompile Include="renderpass\renderpass.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="app.cpp" />
@@ -161,12 +162,14 @@
     <ClCompile Include="renderpass\rpPresent.cpp" />
     <ClCompile Include="resources\frame.cpp" />
     <ClCompile Include="resources\image.cpp" />
+    <ClCompile Include="resources\shader.cpp" />
     <ClCompile Include="window\sdlwindow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core\cmdManager.h" />
     <ClInclude Include="core\deviceManager.h" />
     <ClInclude Include="core\swapchain.h" />
+    <ClInclude Include="file.h" />
     <ClInclude Include="renderpass\renderpass.h" />
     <ClInclude Include="include.h" />
     <ClInclude Include="app.h" />
@@ -174,6 +177,7 @@
     <ClInclude Include="renderpass\rpPresent.h" />
     <ClInclude Include="resources\frame.h" />
     <ClInclude Include="resources\image.h" />
+    <ClInclude Include="resources\shader.h" />
     <ClInclude Include="settings.h" />
     <ClInclude Include="system.h" />
     <ClInclude Include="common.h" />

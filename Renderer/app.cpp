@@ -28,6 +28,7 @@ void App::init() {
 	System::setDeviceManager( mDeviceManagerPtr );
 	System::setWindow		( mSdlWindowPtr );
 	System::setCmdManager	( mCmdManagerPtr );
+
 }
 
 void App::setup() {
