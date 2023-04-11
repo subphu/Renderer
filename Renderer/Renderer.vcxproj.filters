@@ -15,94 +15,124 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="sources\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="window\sdlwindow.cpp">
+    <ClCompile Include="sources\window\sdlwindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="app.cpp">
+    <ClCompile Include="sources\app.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="core\device.cpp">
+    <ClCompile Include="sources\core\device.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="core\deviceManager.cpp">
+    <ClCompile Include="sources\core\deviceManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="core\cmdManager.cpp">
+    <ClCompile Include="sources\core\cmdManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="resources\frame.cpp">
+    <ClCompile Include="sources\resources\frame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="resources\image.cpp">
+    <ClCompile Include="sources\resources\image.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="renderpass\renderpass.cpp">
+    <ClCompile Include="sources\renderpass\renderpass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="renderpass\rpPresent.cpp">
+    <ClCompile Include="sources\core\swapchain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="core\swapchain.cpp">
+    <ClCompile Include="sources\resources\shader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="resources\shader.cpp">
+    <ClCompile Include="sources\core\descriptor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="file.cpp">
+    <ClCompile Include="sources\pipeline\pipeline.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\structure\defaultStructure.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\renderpass\rpResolve.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\pipeline\plResolve.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="window\sdlwindow.h">
+    <ClInclude Include="sources\window\sdlwindow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include.h">
+    <ClInclude Include="sources\include.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="app.h">
+    <ClInclude Include="sources\app.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="system.h">
+    <ClInclude Include="sources\system.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="common.h">
+    <ClInclude Include="sources\common.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="core\device.h">
+    <ClInclude Include="sources\core\device.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="core\deviceManager.h">
+    <ClInclude Include="sources\core\deviceManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="settings.h">
+    <ClInclude Include="sources\settings.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="core\cmdManager.h">
+    <ClInclude Include="sources\core\cmdManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="resources\frame.h">
+    <ClInclude Include="sources\resources\frame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="resources\image.h">
+    <ClInclude Include="sources\resources\image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="renderpass\renderpass.h">
+    <ClInclude Include="sources\renderpass\renderpass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="renderpass\rpPresent.h">
+    <ClInclude Include="sources\core\swapchain.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="core\swapchain.h">
+    <ClInclude Include="sources\resources\shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="resources\shader.h">
+    <ClInclude Include="sources\file.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="file.h">
+    <ClInclude Include="sources\core\descriptor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="sources\pipeline\pipeline.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\structure\structure.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\structure\defaultStructure.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\renderpass\rpResolve.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\pipeline\plResolve.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="sources\shaders\triangle.frag" />
+    <None Include="sources\shaders\triangle.vert" />
+    <None Include="shaders\triangle.frag" />
+    <None Include="shaders\triangle.vert" />
   </ItemGroup>
 </Project>
