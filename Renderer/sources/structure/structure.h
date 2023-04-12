@@ -4,7 +4,6 @@
 
 #include <renderpass/rpResolve.h>
 
-#include <pipeline/plPrerender.h>
 #include <pipeline/plResolve.h>
 
 class Renderpass;

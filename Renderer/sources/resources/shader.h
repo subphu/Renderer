@@ -11,7 +11,6 @@ public:
 	
 	void cleanup();
 
-	void createModule();
 	void createModule( const string filepath );
 	void createStageInfo( const VkShaderStageFlagBits stage, const char* entryPoint = "main" );
 	

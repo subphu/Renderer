@@ -1,6 +1,7 @@
 #include "app.h"
 
 #include <system.h>
+#include <file.h>
 #include <structure/defaultStructure.h>
 
 void App::start() {
@@ -35,6 +36,7 @@ void App::init() {
 	System::setSwapchain	( mSwapchainPtr );
 	System::setDescriptor	( mDescriptorPtr );
 
+	File::CreateDir( mSettingsPtr->spirvDir );
 }
 
 void App::setup() {

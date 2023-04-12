@@ -41,5 +41,10 @@ public:
 		LOG( path );
 		return path;
 	}
+
+	static void CreateDir( const string dir ) {
+		std::filesystem::path path = std::filesystem::current_path().append( dir );
+		std::filesystem::create_directories( path );
+	}
 };
 

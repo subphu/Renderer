@@ -15,7 +15,7 @@ struct Settings {
 	string glslcWinDir	= "Libraries/VulkanSDK/Bin/glslc.exe";
 
 	string shaderDir	= "shaders/";
-	string spirvDir		= "resources/spirv/";
+	string spirvDir		= "spirv/";
 	string modelDir		= "resources/model/";
 	string textureDir	= "resources/texture/";
 
