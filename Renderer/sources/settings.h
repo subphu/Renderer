@@ -11,11 +11,12 @@ struct Settings {
 
 	string spirvExt		= ".spv";
 	
-	string glslcMacDir	= "Libraries/VulkanSDK/Bin/glslc";
-	string glslcWinDir	= "Libraries/VulkanSDK/Bin/glslc.exe";
-
-	string shaderDir	= "shaders/";
-	string spirvDir		= "spirv/";
+	string glslcMacDir	= "Bin/glslc";
+	string glslcWinDir	= "Bin/glslc.exe";
+	
+	string hlslDir		= "shaders/hlsl/";
+	string glslDir		= "shaders/glsl/";
+	string spirvDir		= "shaders/spirv/";
 	string modelDir		= "resources/model/";
 	string textureDir	= "resources/texture/";
 

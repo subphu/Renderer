@@ -132,7 +132,7 @@
   <ItemGroup>
     <None Include="sources\shaders\triangle.frag" />
     <None Include="sources\shaders\triangle.vert" />
-    <None Include="shaders\triangle.frag" />
-    <None Include="shaders\triangle.vert" />
+    <None Include="shaders\glsl\triangle.frag" />
+    <None Include="shaders\glsl\triangle.vert" />
   </ItemGroup>
 </Project>

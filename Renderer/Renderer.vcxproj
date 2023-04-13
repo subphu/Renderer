@@ -71,20 +71,20 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)\Renderer\sources;$(SolutionDir)\Libraries\VulkanSDK\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)\Libraries\VulkanSDK\Lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)\Renderer\sources;$(VULKAN_SDK)\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(VULKAN_SDK)\Lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(SolutionDir)\Renderer\sources;$(SolutionDir)\Libraries\VulkanSDK\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)\Libraries\VulkanSDK\Lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)\Renderer\sources;$(VULKAN_SDK)\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(VULKAN_SDK)\Lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)\Renderer\sources;$(SolutionDir)\Libraries\VulkanSDK\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)\Libraries\VulkanSDK\Lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)\Renderer\sources;$(VULKAN_SDK)\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(VULKAN_SDK)\Lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(SolutionDir)\Renderer\sources;$(SolutionDir)\Libraries\VulkanSDK\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)\Libraries\VulkanSDK\Lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)\Renderer\sources;$(VULKAN_SDK)\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(VULKAN_SDK)\Lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -224,8 +224,8 @@ xcopy $(ProjectDir)shaders $(OutDir)shaders /E /H /C /I /Y</Command>
     <ClInclude Include="sources\window\sdlwindow.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="shaders\triangle.frag" />
-    <None Include="shaders\triangle.vert" />
+    <None Include="shaders\glsl\triangle.frag" />
+    <None Include="shaders\glsl\triangle.vert" />
     <None Include="sources\shaders\triangle.frag" />
     <None Include="sources\shaders\triangle.vert" />
   </ItemGroup>
