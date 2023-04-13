@@ -22,7 +22,10 @@ public:
 
 	static const string GetGlslcPath() {
 #ifdef _WIN32
-		string path = std::filesystem::current_path().parent_path().append( System::Settings()->glslcWinDir ).string();
+		char* pValue;
+		size_t len;
+		errno_t err = _dupenv_s( &pValue, &len, "VULKAN_SDK" );
+		string path = std::filesystem::path( pValue ).append(System::Settings()->glslcWinDir).string();
 #elif __unix__
 		string path = std::filesystem::current_path().parent_path().append( System::Settings()->glslcMacDir ).string();
 #endif
@@ -37,7 +40,7 @@ public:
 	}
 
 	static const string GetShaderPath( const string filename ) {
-		string path = std::filesystem::current_path().append( System::Settings()->shaderDir ).append( filename ).string();
+		string path = std::filesystem::current_path().append( System::Settings()->glslDir ).append( filename ).string();
 		LOG( path );
 		return path;
 	}
