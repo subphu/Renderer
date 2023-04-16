@@ -1,7 +1,7 @@
 #include "plResolve.h"
 
 #include <system.h>
-#include <renderpass/renderpass.h>
+#include <core/renderpass.h>
 #include <core/descriptor.h>
 #include <resources/shader.h>
 

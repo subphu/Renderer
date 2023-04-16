@@ -1,6 +1,6 @@
 #pragma once
 
-#include "structure.h"
+#include <structure/structure.h>
 
 class DefaultStructure : public Structure {
 

@@ -11,14 +11,14 @@ struct Settings {
 
 	string spirvExt		= ".spv";
 	
-	string glslcMacDir	= "Bin/glslc";
-	string glslcWinDir	= "Bin/glslc.exe";
+	string glslcMacDir	= "Bin\\glslc";
+	string glslcWinDir	= "Bin\\glslc.exe";
 	
-	string hlslDir		= "shaders/hlsl/";
-	string glslDir		= "shaders/glsl/";
-	string spirvDir		= "shaders/spirv/";
-	string modelDir		= "resources/model/";
-	string textureDir	= "resources/texture/";
+	string hlslDir		= "shaders\\hlsl\\";
+	string glslDir		= "shaders\\glsl\\";
+	string spirvDir		= "shaders\\spirv\\";
+	string modelDir		= "resources\\model\\";
+	string textureDir	= "resources\\texture\\";
 
 	vector<const c8*> validationLayers = { "VK_LAYER_KHRONOS_validation" };
 	vector<const c8*> deviceExtensions = { VK_KHR_SWAPCHAIN_EXTENSION_NAME, VK_EXT_SHADER_VIEWPORT_INDEX_LAYER_EXTENSION_NAME };

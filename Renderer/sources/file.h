@@ -25,6 +25,7 @@ public:
 		char* pValue;
 		size_t len;
 		errno_t err = _dupenv_s( &pValue, &len, "VULKAN_SDK" );
+		ASSERT_NULLPTR( pValue, "Environment variable VULKAN_SDK not found" );
 		string path = std::filesystem::path( pValue ).append(System::Settings()->glslcWinDir).string();
 #elif __unix__
 		string path = std::filesystem::current_path().parent_path().append( System::Settings()->glslcMacDir ).string();

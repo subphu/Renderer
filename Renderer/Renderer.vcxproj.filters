@@ -39,7 +39,7 @@
     <ClCompile Include="sources\resources\image.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sources\renderpass\renderpass.cpp">
+    <ClCompile Include="sources\core\renderpass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sources\core\swapchain.cpp">
@@ -51,16 +51,31 @@
     <ClCompile Include="sources\core\descriptor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sources\pipeline\pipeline.cpp">
+    <ClCompile Include="sources\core\pipeline.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sources\structure\defaultStructure.cpp">
+    <ClCompile Include="sources\structure\defaultStructure\defaultStructure.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sources\renderpass\rpResolve.cpp">
+    <ClCompile Include="sources\structure\defaultStructure\renderpass\rpResolve.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sources\pipeline\plResolve.cpp">
+    <ClCompile Include="sources\structure\defaultStructure\pipeline\plResolve.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\structure\triangleStructure\plTriangle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\structure\2DStructure\pipeline\plResolve2D.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\structure\2DStructure\structure2D.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\structure\2DStructure\renderpass\rpResolve2D.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\resources\buffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -98,7 +113,7 @@
     <ClInclude Include="sources\resources\image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sources\renderpass\renderpass.h">
+    <ClInclude Include="sources\core\renderpass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="sources\core\swapchain.h">
@@ -113,19 +128,34 @@
     <ClInclude Include="sources\core\descriptor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sources\pipeline\pipeline.h">
+    <ClInclude Include="sources\core\pipeline.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="sources\structure\structure.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sources\structure\defaultStructure.h">
+    <ClInclude Include="sources\structure\defaultStructure\defaultStructure.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sources\renderpass\rpResolve.h">
+    <ClInclude Include="sources\structure\defaultStructure\renderpass\rpResolve.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sources\pipeline\plResolve.h">
+    <ClInclude Include="sources\structure\defaultStructure\pipeline\plResolve.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\structure\triangleStructure\plTriangle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\structure\2DStructure\pipeline\plResolve2D.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\structure\2DStructure\structure2D.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\structure\2DStructure\renderpass\rpResolve2D.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\resources\buffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -134,5 +164,7 @@
     <None Include="sources\shaders\triangle.vert" />
     <None Include="shaders\glsl\triangle.frag" />
     <None Include="shaders\glsl\triangle.vert" />
+    <None Include="shaders\glsl\fill.frag" />
+    <None Include="shaders\glsl\fill.vert" />
   </ItemGroup>
 </Project>

@@ -4,7 +4,7 @@
 #include "pipeline.h"
 
 #include <system.h>
-#include <renderpass/renderpass.h>
+#include <core/renderpass.h>
 
 Pipeline::~Pipeline() {}
 Pipeline::Pipeline( Renderpass* renderpass, const u32 subpass ) : 

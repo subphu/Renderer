@@ -1,6 +1,6 @@
 #pragma once
 
-#include "pipeline.h"
+#include <core/pipeline.h>
 
 class Renderpass;
 

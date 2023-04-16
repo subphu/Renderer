@@ -2,7 +2,8 @@
 
 #include <system.h>
 #include <file.h>
-#include <structure/defaultStructure.h>
+#include <structure/2DStructure/structure2D.h>
+#include <structure/defaultStructure/defaultStructure.h>
 
 void App::start() {
 	init();
@@ -28,7 +29,7 @@ void App::init() {
 	mSwapchainPtr = new Swapchain();
 	mDescriptorPtr = new Descriptor();
 
-	mStructurePtr = new DefaultStructure();
+	mStructurePtr = new Structure2D();
 
 	System::setDeviceManager( mDeviceManagerPtr );
 	System::setWindow		( mSdlWindowPtr );

@@ -2,9 +2,13 @@
 
 #include <common.h>
 
-#include <renderpass/rpResolve.h>
+#include "triangleStructure/plTriangle.h"
 
-#include <pipeline/plResolve.h>
+#include "defaultStructure/renderpass/rpResolve.h"
+#include "defaultStructure/pipeline/plResolve.h"
+
+#include "2DStructure/renderpass/rpResolve2D.h"
+#include "2DStructure/pipeline/plResolve2D.h"
 
 class Renderpass;
 class Pipeline;

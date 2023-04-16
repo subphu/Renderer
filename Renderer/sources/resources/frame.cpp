@@ -3,7 +3,7 @@
 
 #include "frame.h"
 #include <system.h>
-#include <renderpass/renderpass.h>
+#include <core/renderpass.h>
 #include <resources/image.h>
 
 Frame::~Frame() {}

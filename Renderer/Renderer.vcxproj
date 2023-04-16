@@ -186,33 +186,40 @@ xcopy $(ProjectDir)shaders $(OutDir)shaders /E /H /C /I /Y</Command>
     <ClCompile Include="sources\core\cmdManager.cpp" />
     <ClCompile Include="sources\core\deviceManager.cpp" />
     <ClCompile Include="sources\core\swapchain.cpp" />
-    <ClCompile Include="sources\pipeline\plResolve.cpp" />
-    <ClCompile Include="sources\renderpass\rpResolve.cpp" />
-    <ClCompile Include="sources\structure\defaultStructure.cpp" />
     <ClCompile Include="sources\resources\buffer.cpp" />
+    <ClCompile Include="sources\structure\defaultStructure\pipeline\plResolve.cpp" />
+    <ClCompile Include="sources\structure\2DStructure\pipeline\plResolve2D.cpp" />
+    <ClCompile Include="sources\structure\triangleStructure\plTriangle.cpp" />
+    <ClCompile Include="sources\structure\defaultStructure\renderpass\rpResolve.cpp" />
+    <ClCompile Include="sources\structure\2DStructure\renderpass\rpResolve2D.cpp" />
+    <ClCompile Include="sources\structure\defaultStructure\defaultStructure.cpp" />
     <ClCompile Include="sources\core\descriptor.cpp" />
-    <ClCompile Include="sources\pipeline\pipeline.cpp" />
-    <ClCompile Include="sources\renderpass\renderpass.cpp" />
+    <ClCompile Include="sources\core\pipeline.cpp" />
+    <ClCompile Include="sources\core\renderpass.cpp" />
     <ClCompile Include="sources\main.cpp" />
     <ClCompile Include="sources\app.cpp" />
     <ClCompile Include="sources\core\device.cpp" />
     <ClCompile Include="sources\resources\frame.cpp" />
     <ClCompile Include="sources\resources\image.cpp" />
     <ClCompile Include="sources\resources\shader.cpp" />
+    <ClCompile Include="sources\structure\2DStructure\structure2D.cpp" />
     <ClCompile Include="sources\window\sdlwindow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sources\core\cmdManager.h" />
     <ClInclude Include="sources\core\deviceManager.h" />
     <ClInclude Include="sources\core\swapchain.h" />
-    <ClInclude Include="sources\pipeline\plResolve.h" />
-    <ClInclude Include="sources\renderpass\rpResolve.h" />
-    <ClInclude Include="sources\structure\defaultStructure.h" />
     <ClInclude Include="sources\resources\buffer.h" />
+    <ClInclude Include="sources\structure\defaultStructure\pipeline\plResolve.h" />
+    <ClInclude Include="sources\structure\2DStructure\pipeline\plResolve2D.h" />
+    <ClInclude Include="sources\structure\triangleStructure\plTriangle.h" />
+    <ClInclude Include="sources\structure\defaultStructure\renderpass\rpResolve.h" />
+    <ClInclude Include="sources\structure\2DStructure\renderpass\rpResolve2D.h" />
+    <ClInclude Include="sources\structure\defaultStructure\defaultStructure.h" />
     <ClInclude Include="sources\file.h" />
     <ClInclude Include="sources\core\descriptor.h" />
-    <ClInclude Include="sources\pipeline\pipeline.h" />
-    <ClInclude Include="sources\renderpass\renderpass.h" />
+    <ClInclude Include="sources\core\pipeline.h" />
+    <ClInclude Include="sources\core\renderpass.h" />
     <ClInclude Include="sources\include.h" />
     <ClInclude Include="sources\app.h" />
     <ClInclude Include="sources\core\device.h" />
@@ -221,11 +228,14 @@ xcopy $(ProjectDir)shaders $(OutDir)shaders /E /H /C /I /Y</Command>
     <ClInclude Include="sources\resources\shader.h" />
     <ClInclude Include="sources\settings.h" />
     <ClInclude Include="sources\structure\structure.h" />
+    <ClInclude Include="sources\structure\2DStructure\structure2D.h" />
     <ClInclude Include="sources\system.h" />
     <ClInclude Include="sources\common.h" />
     <ClInclude Include="sources\window\sdlwindow.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="shaders\glsl\fill.frag" />
+    <None Include="shaders\glsl\fill.vert" />
     <None Include="shaders\glsl\triangle.frag" />
     <None Include="shaders\glsl\triangle.vert" />
     <None Include="sources\shaders\triangle.frag" />

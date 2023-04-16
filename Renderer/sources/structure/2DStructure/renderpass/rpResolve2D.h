@@ -1,12 +1,12 @@
 #pragma once
 
-#include "renderpass.h"
+#include <core/renderpass.h>
 
-class RpResolve : public Renderpass {
+class RpResolve2D : public Renderpass {
 
 public:
-	~RpResolve();
-	RpResolve();
+	~RpResolve2D();
+	RpResolve2D();
 
 	void setupAttachment() override;
 	void setupSubpass() override;
