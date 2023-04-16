@@ -189,6 +189,7 @@ xcopy $(ProjectDir)shaders $(OutDir)shaders /E /H /C /I /Y</Command>
     <ClCompile Include="sources\pipeline\plResolve.cpp" />
     <ClCompile Include="sources\renderpass\rpResolve.cpp" />
     <ClCompile Include="sources\structure\defaultStructure.cpp" />
+    <ClCompile Include="sources\resources\buffer.cpp" />
     <ClCompile Include="sources\core\descriptor.cpp" />
     <ClCompile Include="sources\pipeline\pipeline.cpp" />
     <ClCompile Include="sources\renderpass\renderpass.cpp" />
@@ -207,6 +208,7 @@ xcopy $(ProjectDir)shaders $(OutDir)shaders /E /H /C /I /Y</Command>
     <ClInclude Include="sources\pipeline\plResolve.h" />
     <ClInclude Include="sources\renderpass\rpResolve.h" />
     <ClInclude Include="sources\structure\defaultStructure.h" />
+    <ClInclude Include="sources\resources\buffer.h" />
     <ClInclude Include="sources\file.h" />
     <ClInclude Include="sources\core\descriptor.h" />
     <ClInclude Include="sources\pipeline\pipeline.h" />
