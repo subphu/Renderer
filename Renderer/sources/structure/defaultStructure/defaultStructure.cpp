@@ -19,9 +19,9 @@ void DefaultStructure::setup() {
 	}
 }
 
-void DefaultStructure::update() {
+void DefaultStructure::update( RenderTime renderTime ) {
 	for (Pipeline* pipeline : mResolveLayer.pipelines) {
-		pipeline->update();
+		pipeline->update( renderTime );
 	}
 }
 

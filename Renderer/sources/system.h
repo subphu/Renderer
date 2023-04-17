@@ -12,13 +12,26 @@ struct RenderTime {
 	TimeVal lastTime = ChronoTime::now();
 	f32 delay = 1.f / 60.f;
 	f32 lag = delay;
+	f32 framerate = 0;
+	u32 frameNum = 0;
+	u32 nanosecond = 0;
+	u32 microsecond = 0;
 	bool lock = false;
 
 	bool isLag() { return lag < delay; }
 	u32 getSleepTime() { return U32((delay - lag) * 1000000); }
 
-	void updateTime() { lastTime = ChronoTime::now(); };
-	void startRender() { lag -= delay; };
+	void updateTime() { 
+		lastTime = ChronoTime::now();
+		auto epoch = lastTime.time_since_epoch();
+		u32 prevNs = nanosecond;
+		nanosecond = U32( std::chrono::duration_cast<std::chrono::nanoseconds>(epoch).count() );
+		microsecond = U32( std::chrono::duration_cast<std::chrono::microseconds>(epoch).count() );
+		framerate = 1000000000.0f / (nanosecond - prevNs);
+		frameNum++;
+	};
+
+	void subPresentTime() { lag -= delay; };
 	void addRenderTime() {
 		lag += TimeDif( ChronoTime::now() - lastTime ).count();
 		updateTime();

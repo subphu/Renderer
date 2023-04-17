@@ -21,7 +21,7 @@ struct Settings {
 	string textureDir	= "resources\\texture\\";
 
 	vector<const c8*> validationLayers = { "VK_LAYER_KHRONOS_validation" };
-	vector<const c8*> deviceExtensions = { VK_KHR_SWAPCHAIN_EXTENSION_NAME, VK_EXT_SHADER_VIEWPORT_INDEX_LAYER_EXTENSION_NAME };
+	vector<const c8*> deviceExtensions = { VK_KHR_SWAPCHAIN_EXTENSION_NAME, VK_EXT_SHADER_VIEWPORT_INDEX_LAYER_EXTENSION_NAME, VK_KHR_PIPELINE_LIBRARY_EXTENSION_NAME, VK_EXT_GRAPHICS_PIPELINE_LIBRARY_EXTENSION_NAME };
 	vector<const c8*> instanceExtensions = { VK_EXT_DEBUG_REPORT_EXTENSION_NAME, VK_EXT_DEBUG_UTILS_EXTENSION_NAME };
 
 	VkPresentModeKHR defaultPresentMode = VK_PRESENT_MODE_IMMEDIATE_KHR;

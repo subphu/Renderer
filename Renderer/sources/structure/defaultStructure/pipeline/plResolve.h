@@ -14,7 +14,7 @@ public:
 	void setupShaderStages() override;
 	void setupVertexInputInfo() override;
 
-	void update() override;
+	void update( RenderTime renderTime ) override;
 	void draw( VkCommandBuffer cmdBuffer ) override;
 };
 

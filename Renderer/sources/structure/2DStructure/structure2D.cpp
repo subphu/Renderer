@@ -7,7 +7,7 @@
 Structure2D::~Structure2D() {}
 Structure2D::Structure2D() {
 	mResolveLayer.renderpass = new RpResolve2D();
-	mResolveLayer.pipelines.push_back( new PlResolve2D( mResolveLayer.renderpass, 0));
+	mResolveLayer.pipelines.push_back( new PlResolve2D( mResolveLayer.renderpass, 0 ) );
 }
 
 void Structure2D::setup() {
@@ -19,9 +19,9 @@ void Structure2D::setup() {
 	}
 }
 
-void Structure2D::update() {
+void Structure2D::update( RenderTime renderTime ) {
 	for (Pipeline* pipeline : mResolveLayer.pipelines) {
-		pipeline->update();
+		pipeline->update( renderTime );
 	}
 }
 

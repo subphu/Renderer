@@ -32,7 +32,7 @@ void PlTriangle::setupVertexInputInfo() {
 	mVertexInputInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
 }
 
-void PlTriangle::update() {}
+void PlTriangle::update( RenderTime renderTime ) {}
 
 void PlTriangle::draw( VkCommandBuffer cmdBuffer ) {
 	vkCmdBindPipeline( cmdBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, mPipeline );

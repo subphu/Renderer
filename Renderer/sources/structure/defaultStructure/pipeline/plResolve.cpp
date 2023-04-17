@@ -32,7 +32,7 @@ void PlResolve::setupVertexInputInfo() {
 	mVertexInputInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
 }
 
-void PlResolve::update() {}
+void PlResolve::update( RenderTime renderTime ) {}
 
 void PlResolve::draw( VkCommandBuffer cmdBuffer ) {
 	vkCmdBindPipeline( cmdBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, mPipeline );

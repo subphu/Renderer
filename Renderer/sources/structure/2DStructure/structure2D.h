@@ -9,7 +9,7 @@ public:
 	Structure2D();
 
 	void setup() override;
-	void update() override;
+	void update( RenderTime renderTime ) override;
 	void draw() override;
 	void cleanup() override;
 

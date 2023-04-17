@@ -49,6 +49,8 @@ u32 Descriptor::createSetLayout( const vector<VkDescriptorSetLayoutBinding>& lay
 }
 
 void Descriptor::allocateDescriptorSets() {
+	if (mSetLayouts.size() <= 0) return;
+
 	LOG( "Descriptor::allocateDescriptorSet" );
 	VkDevice device = System::Device()->getDevice();
 

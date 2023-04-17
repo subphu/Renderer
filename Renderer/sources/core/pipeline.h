@@ -6,6 +6,7 @@
 #include <common.h>
 
 class Renderpass;
+struct RenderTime;
 
 class Pipeline {
 	
@@ -37,8 +38,10 @@ public:
 	virtual void setupPipelineLayout() = 0;
 	virtual void setupShaderStages() = 0;
 	virtual void setupVertexInputInfo() = 0;
+	virtual void setupDescriptorSet();
 
-	virtual void update() = 0;
+
+	virtual void update( RenderTime renderTime ) = 0;
 	virtual void draw( VkCommandBuffer cmdBuffer ) = 0;
 	
 protected:

@@ -48,6 +48,7 @@ void App::setup() {
 
 	mStructurePtr->setup();
 
+	mDescriptorPtr->allocateDescriptorSets();
 }
 
 void App::loop() {
@@ -57,8 +58,8 @@ void App::loop() {
 
 	while (!mSdlWindowPtr->isClosed()) {
 		mSdlWindowPtr->pollEvent();
-		mStructurePtr->update();
-		renderTime.startRender();
+		mStructurePtr->update( renderTime );
+		renderTime.subPresentTime();
 		while (renderTime.isLag()) {
 			mStructurePtr->draw();
 			renderTime.addRenderTime();

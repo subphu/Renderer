@@ -15,8 +15,11 @@ void Pipeline::cleanup() { mCleaner.flush("Pipeline"); }
 
 VkPipeline Pipeline::get() { return mPipeline; }
 
+void Pipeline::setupDescriptorSet() { }
+
 void Pipeline::setup() {
 	setupShaderStages();
+	setupDescriptorSet();
 	setupPipelineLayout();
 	setupVertexInputInfo();
 	setupViewportInfo();

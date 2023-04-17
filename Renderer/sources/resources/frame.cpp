@@ -61,6 +61,19 @@ void Frame::addColorOutput( const VkFormat format ) {
 void Frame::addColorOutput( const VkImage vkImage, const VkFormat format ) {
 	Image* image = new Image();
 	image->create( vkImage, format );
+	image->createSampler();
+	
+	VkCommandBuffer cmdBuffer = System::CmdManager()->createCommandBuffer();
+	System::CmdManager()->beginOneTimeCommands( cmdBuffer );
+	VkImageMemoryBarrier barrier = image->getMemoryBarrier();
+	barrier.newLayout = VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL;
+	barrier.dstAccessMask = VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT;
+	vkCmdPipelineBarrier( cmdBuffer,
+						  VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT, 
+						  VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT,
+						  0, 0, nullptr, 0, nullptr,
+						  1, &barrier );
+	System::CmdManager()->endOneTimeCommands( cmdBuffer );
 
 	mColorOutput.push_back( image );
 	mAttachments.push_back( image->getImageView() );

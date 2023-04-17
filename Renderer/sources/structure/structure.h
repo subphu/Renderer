@@ -14,6 +14,8 @@ class Renderpass;
 class Pipeline;
 class Image;
 
+struct RenderTime;
+
 class Structure {
 
 public:
@@ -27,7 +29,7 @@ public:
 	Structure() {};
 
 	virtual void setup() = 0;
-	virtual void update() = 0;
+	virtual void update( RenderTime renderTime ) = 0;
 	virtual void draw() = 0;
 	virtual void cleanup() = 0;
 
