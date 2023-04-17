@@ -44,13 +44,14 @@ void PlResolve2D::setupVertexInputInfo() {
 }
 
 void PlResolve2D::update( const RenderTime renderTime ) {
-	mFrameInfo.resolution	= System::Window()->getFrameSize();
-	mFrameInfo.framerate	= renderTime.framerate;
-	mFrameInfo.frame		= renderTime.frameNum;
-	mFrameInfo.microsecond	= renderTime.microsecond;
-	mFrameInfo.nanosecond	= renderTime.nanosecond;
-	//mFrameInfo.mousePos		= ;
-	//mFrameInfo.mouseState		= ;
+	mFrameInfo.resolution	  = System::Window()->getFrameSize();
+	mFrameInfo.framerate	  = renderTime.framerate;
+	mFrameInfo.frame		  = renderTime.frameNum;
+	mFrameInfo.microsecond	  = renderTime.microsecond;
+	mFrameInfo.millisecond	  = renderTime.millisecond;
+	mFrameInfo.mouseState	  = System::Window()->getMouseState();
+	mFrameInfo.mousePos		  = System::Window()->getMousePos();
+	mFrameInfo.mouseDownDelta = System::Window()->getMouseDownDelta();
 }
 
 void PlResolve2D::draw( VkCommandBuffer cmdBuffer ) {

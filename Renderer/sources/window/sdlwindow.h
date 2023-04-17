@@ -28,6 +28,11 @@ public:
 
 	const VkSurfaceKHR& getSurface();
 
+	void updateInput();
+	const vec4 getMousePos();
+	const vec4 getMouseDownDelta();
+	const uvec2 getMouseState();
+
 private:
 	Cleaner mCleaner{};
 
@@ -38,5 +43,8 @@ private:
 	bool mResized = false;
 	bool mClosed = false;
 
+	vec4 mMousePos;
+	vec4 mMouseDownDelta;
+	uvec2 mMouseState;
 };
 

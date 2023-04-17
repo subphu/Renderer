@@ -25,9 +25,10 @@ private:
 		f32 framerate;
 		u32 frame;
 		u32 microsecond;
-		u32 nanosecond;
+		u32 millisecond;
+		uvec2 mouseState;
 		vec4 mousePos;
-		UInt2 mouseState;
+		vec4 mouseDownDelta;
 	};
 
 	FrameInfo mFrameInfo{};

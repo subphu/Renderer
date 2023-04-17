@@ -89,3 +89,27 @@ void SDLWindow::setSize( const UInt2& size ) {
 bool SDLWindow::isResized() { return mResized; }
 bool SDLWindow::isClosed() { return mClosed; }
 const VkSurfaceKHR& SDLWindow::getSurface() { return mSurface; }
+
+void SDLWindow::updateInput() {
+	s32 x, y;
+	mMouseState.y = mMouseState.x;
+	mMouseState.x = SDL_GetMouseState( &x, &y );
+	mMousePos.z = f32( x ) - mMousePos.x;
+	mMousePos.w = f32( y ) - mMousePos.y;
+	mMousePos.x = f32( x );
+	mMousePos.y = f32( y );
+	if (mMouseState.x == SDL_BUTTON( SDL_BUTTON_LEFT )) {
+		mMouseDownDelta.x += mMousePos.z;
+		mMouseDownDelta.y += mMousePos.w;
+	}
+	if (mMouseState.x == SDL_BUTTON( SDL_BUTTON_RIGHT )) {
+		mMouseDownDelta.z += mMousePos.z;
+		mMouseDownDelta.w += mMousePos.w;
+	}
+}
+
+const vec4 SDLWindow::getMousePos() { return mMousePos; }
+
+const vec4 SDLWindow::getMouseDownDelta() { return mMouseDownDelta; }
+
+const uvec2 SDLWindow::getMouseState() { return mMouseState; }

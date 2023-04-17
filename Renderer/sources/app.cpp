@@ -56,8 +56,10 @@ void App::loop() {
 	bool quit = false;
 	bool lockFps = false;
 
+	mSdlWindowPtr->updateInput();
 	while (!mSdlWindowPtr->isClosed()) {
 		mSdlWindowPtr->pollEvent();
+		mSdlWindowPtr->updateInput();
 		mStructurePtr->update( renderTime );
 		renderTime.subPresentTime();
 		while (renderTime.isLag()) {
