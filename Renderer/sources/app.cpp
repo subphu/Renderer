@@ -60,10 +60,14 @@ void App::loop() {
 	while (!mSdlWindowPtr->isClosed()) {
 		mSdlWindowPtr->pollEvent();
 		mSdlWindowPtr->updateInput();
+
 		mStructurePtr->update( renderTime );
+		
 		renderTime.subPresentTime();
 		while (renderTime.isLag()) {
+		
 			mStructurePtr->draw();
+			
 			renderTime.addRenderTime();
 			renderTime.sleepIf( lockFps );
 		}

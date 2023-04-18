@@ -26,18 +26,31 @@ void Structure2D::update( RenderTime renderTime ) {
 }
 
 void Structure2D::draw() {
+	setupViewportScissor();
 	Swapchain* swapchain = System::Swapchain();
-	VkCommandBuffer cmdBuffer;
 
-	swapchain->prepare( &cmdBuffer );
+	VkCommandBuffer cmdBuffer;
+	if (!swapchain->prepare( &cmdBuffer ))
+		return refresh();
 
 	mResolveLayer.renderpass->begin( cmdBuffer );
+
+	vkCmdSetViewport( cmdBuffer, 0, 1, &mViewport );
+	vkCmdSetScissor( cmdBuffer, 0, 1, &mScissor );
+	
 	for (Pipeline* pipeline : mResolveLayer.pipelines) {
 		pipeline->draw( cmdBuffer );
 	}
+
 	mResolveLayer.renderpass->end( cmdBuffer );
 
-	swapchain->present( mResolveLayer.renderpass->getFramePtr()->getColorOutput()[0] );
+	Image* image = mResolveLayer.renderpass->getFramePtr()->getColorOutput()[0];
+	if (!swapchain->present( image ))
+		return refresh();
+}
+
+void Structure2D::refresh() {
+	mResolveLayer.renderpass->recreateFrame();
 }
 
 void Structure2D::cleanup() {

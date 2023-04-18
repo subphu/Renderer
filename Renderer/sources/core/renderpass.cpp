@@ -8,13 +8,23 @@
 Renderpass::~Renderpass() {}
 Renderpass::Renderpass() {}
 
-void Renderpass::cleanup() { mCleaner.flush("Renderpass"); }
+void Renderpass::cleanup() {
+	mAttachmentDescs.clear();
+	mClearValues.clear();
+	mSubpasses.clear();
+	mCleaner.flush("Renderpass"); 
+}
 
 void Renderpass::create() {
 	setupAttachment();
 	setupSubpass();
 	setupDependency();
 	createRenderpass();
+}
+
+void Renderpass::recreateFrame() {
+	mFrame->cleanup();
+	createFrame();
 }
 
 void Renderpass::createRenderpass() {

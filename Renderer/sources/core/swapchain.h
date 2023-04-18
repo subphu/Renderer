@@ -18,8 +18,8 @@ public:
 	void create( const VkSurfaceKHR surface );
 	void createFrames();
 
-	void prepare( VkCommandBuffer* cmdBuffer );
-	void present( Image* image );
+	bool prepare( VkCommandBuffer* cmdBuffer );
+	bool present( Image* image );
 
 	const VkCommandBuffer getCmdBuffer();
 	
@@ -41,7 +41,7 @@ private:
 
 	void fillFrame( Image* image );
 	void submitFrame();
-	void presentFrame();
+	bool presentFrame();
 
-	void checkSwapchainResult(VkResult result);
+	bool checkSwapchainResult(VkResult result);
 };

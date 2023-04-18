@@ -33,7 +33,7 @@ void RpResolve::setupDependency() {
 }
 
 void RpResolve::createFrame() {
-	mFrame = new Frame( System::Device()->getSurfaceCapabilities().currentExtent );
+	mFrame = new Frame( System::Window()->getFrameSize() );
 	mFrame->addColorOutput( VK_FORMAT_R8G8B8A8_UNORM );
 	mFrame->createFramebuffer( mRenderpassPtr );
 	mCleaner.push( [=]() { mFrame->cleanup(); } );

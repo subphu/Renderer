@@ -11,6 +11,7 @@ public:
 	void setup() override;
 	void update( RenderTime renderTime ) override;
 	void draw() override;
+	void refresh() override;
 	void cleanup() override;
 
 private:

@@ -41,6 +41,7 @@ public:
 	virtual void setupDependency() = 0;
 	virtual void createFrame()	   = 0;
 
+	void recreateFrame();
 	void createRenderpass();
 
 	void begin( const VkCommandBuffer cmdBuffer );

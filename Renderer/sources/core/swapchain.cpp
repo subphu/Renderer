@@ -25,15 +25,16 @@ void Swapchain::create( const VkSurfaceKHR surface ) {
 	LOG( "Swapchain::create" );
 	Device*		   devicePtr = System::Device();
 	const VkDevice device    = devicePtr->getDevice();
+	const UInt2	   extent	 = System::Window()->getFrameSize();
 	const VkPresentModeKHR         presentMode   = devicePtr->getPresentMode();
 	const VkSurfaceFormatKHR       surfaceFormat = devicePtr->getSurfaceFormat();
 	const VkSurfaceCapabilitiesKHR capabilities  = devicePtr->getSurfaceCapabilities();
 	
 	mSwapchainInfo.sType            = VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR;
 	mSwapchainInfo.surface          = surface;
+	mSwapchainInfo.imageExtent      = extent;
 	mSwapchainInfo.preTransform     = capabilities.currentTransform;
 	mSwapchainInfo.minImageCount    = capabilities.maxImageCount < 3 ? 2 : 3;
-	mSwapchainInfo.imageExtent      = capabilities.currentExtent;
 	mSwapchainInfo.imageFormat      = surfaceFormat.format;
 	mSwapchainInfo.imageColorSpace  = surfaceFormat.colorSpace;
 	mSwapchainInfo.imageArrayLayers = 1;
@@ -77,7 +78,7 @@ void Swapchain::createFrames() {
 	mCleaner.push([=]() { System::Device()->waitQueueIdle(); });
 }
 
-void Swapchain::prepare( VkCommandBuffer* cmdBuffer ) {
+bool Swapchain::prepare( VkCommandBuffer* cmdBuffer ) {
 	VkDevice device = System::Device()->getDevice();
 
 	VkFence submitFence = mSubmitFences[mImageIdx];
@@ -89,18 +90,20 @@ void Swapchain::prepare( VkCommandBuffer* cmdBuffer ) {
 	VkResult result = vkAcquireNextImageKHR( device, mSwapchain,
 											 UINT32_MAX, prepareSemaphore,
 											 VK_NULL_HANDLE, &mImageIdx );
-	checkSwapchainResult( result );
+	if (!checkSwapchainResult( result ))
+		return false;
 
 	*cmdBuffer = mCmdBuffers[mImageIdx];
 	VkCommandBufferBeginInfo cmdBeginInfo{ VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO };
 	result = vkBeginCommandBuffer( *cmdBuffer, &cmdBeginInfo );
 	ASSERT_VKERROR( result, "failed to start command buffer!" );
+	return true;
 }
 
-void Swapchain::present( Image* image ) {
+bool Swapchain::present( Image* image ) {
 	fillFrame( image );
 	submitFrame();
-	presentFrame();
+	return presentFrame();
 }
 
 const VkCommandBuffer Swapchain::getCmdBuffer() { return mCmdBuffers[mImageIdx]; }
@@ -166,7 +169,7 @@ void Swapchain::submitFrame() {
 	ASSERT_VKERROR(result, "failed to submit draw command buffer!");
 }
 
-void Swapchain::presentFrame() {
+bool Swapchain::presentFrame() {
 	VkPresentInfoKHR presentInfo{};
 	presentInfo.sType = VK_STRUCTURE_TYPE_PRESENT_INFO_KHR;
 	presentInfo.swapchainCount     = 1;
@@ -177,13 +180,16 @@ void Swapchain::presentFrame() {
 
 	VkQueue presentQueue = System::Device()->getPresentQueue();
 	VkResult result = vkQueuePresentKHR(presentQueue, &presentInfo);
-	checkSwapchainResult( result );
+	return checkSwapchainResult( result );
 }
 
-void Swapchain::checkSwapchainResult(VkResult result) {
-	if (result != VK_ERROR_OUT_OF_DATE_KHR && result != VK_SUBOPTIMAL_KHR) { return; }
+bool Swapchain::checkSwapchainResult(VkResult result) {
+	if (result != VK_ERROR_OUT_OF_DATE_KHR && result != VK_SUBOPTIMAL_KHR)
+		return true;
+
 	LOG("swap chain failed!");
 	cleanup();
 	create( mSwapchainInfo.surface );
 	createFrames();
+	return false;
 }
