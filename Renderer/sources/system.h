@@ -2,6 +2,7 @@
 
 #include <common.h>
 #include <settings.h>
+#include <watcher.h>
 #include <window/sdlwindow.h>
 #include <core/deviceManager.h>
 #include <core/cmdManager.h>
@@ -57,6 +58,7 @@ private:
 	CmdManager*		mCmdManagerPtr		= nullptr;
 	Swapchain*		mSwapchainPtr		= nullptr;
 	Descriptor*		mDescriptorPtr		= nullptr;
+	Watcher*		mWatcher			= nullptr;
 
 public:
 
@@ -68,6 +70,7 @@ public:
 	static CmdManager*	CmdManager() { return Instance().mCmdManagerPtr; }
 	static Swapchain*	Swapchain()  { return Instance().mSwapchainPtr; }
 	static Descriptor*	Descriptor() { return Instance().mDescriptorPtr; }
+	static Watcher*		Watcher()	 { return Instance().mWatcher; }
 
 	static void setSettings		( struct Settings* settings )			{ Instance().mSettingsPtr = settings; }
 	static void setWindow		( class SDLWindow* window )				{ Instance().mWindowPtr = window; }
@@ -75,6 +78,7 @@ public:
 	static void setCmdManager	( class CmdManager* cmdManagerPtr )		{ Instance().mCmdManagerPtr = cmdManagerPtr; }
 	static void setSwapchain	( class Swapchain* swapchainPtr )		{ Instance().mSwapchainPtr = swapchainPtr; }
 	static void setDescriptor	( class Descriptor* descriptor )		{ Instance().mDescriptorPtr = descriptor; }
+	static void setWatcher		( class Watcher* watcher )				{ Instance().mWatcher = watcher; }
 	
 	System( const System& ) = delete;
 	System& operator=( const System& ) = delete;

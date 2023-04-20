@@ -31,11 +31,15 @@ void App::init() {
 
 	mStructurePtr = new Structure2D();
 
+	mWatcher = new Watcher();
+	mWatcher->watchShaderDir();
+
 	System::setDeviceManager( mDeviceManagerPtr );
 	System::setWindow		( mSdlWindowPtr );
 	System::setCmdManager	( mCmdManagerPtr );
 	System::setSwapchain	( mSwapchainPtr );
 	System::setDescriptor	( mDescriptorPtr );
+	System::setWatcher		( mWatcher );
 
 	File::CreateDir( mSettingsPtr->spirvDir );
 }
@@ -75,7 +79,10 @@ void App::loop() {
 }
 
 void App::cleanup() {
+	mDeviceManagerPtr->getDevice()->waitQueueIdle();
 	mDeviceManagerPtr->getDevice()->waitDeviceIdle();
+
+	mWatcher->cleanup();
 
 	mStructurePtr->cleanup();
 

@@ -7,7 +7,8 @@
 Shader::~Shader() {}
 Shader::Shader() {}
 
-Shader::Shader( const string filepath, const VkShaderStageFlagBits stage, const char* entryPoint ) {
+Shader::Shader( const string filepath, const VkShaderStageFlagBits stage, const char* entryPoint )
+	: mFilepath( filepath ) {
 	createModule( CompileShader( filepath ) );
 	createStageInfo( stage, entryPoint );
 }
@@ -17,7 +18,6 @@ void Shader::cleanup() { mCleaner.flush("Shader"); }
 void Shader::createModule( const string filepath ) {
 	LOG("Shader::createModule");
 	VkDevice device = System::Device()->getDevice();
-	mFilepath = filepath + System::Settings()->spirvExt;
 	auto code = File::ReadBinaryFile(filepath);
 	
 	VkShaderModuleCreateInfo shaderInfo{};
@@ -37,6 +37,8 @@ void Shader::createStageInfo( const VkShaderStageFlagBits stage, const char* ent
 	mShaderStageInfo.pName  = entryPoint;
 	mShaderStageInfo.module = mShaderModule;
 }
+
+const string Shader::getFilepath() { return mFilepath; }
 
 const VkPipelineShaderStageCreateInfo& Shader::getShaderStageInfo() { return mShaderStageInfo; }
 

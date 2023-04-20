@@ -12,15 +12,25 @@ PlResolve2D::PlResolve2D( Renderpass* renderpass, const u32 subpass ) :
 	Pipeline( renderpass, subpass ) {}
 
 void PlResolve2D::setupShaderStages() {
-	Shader* vertShader = new Shader( "fill.vert", VK_SHADER_STAGE_VERTEX_BIT );
-	Shader* fragShader = new Shader( "fill.frag", VK_SHADER_STAGE_FRAGMENT_BIT );
-	mShaderStages = { vertShader->getShaderStageInfo(), fragShader->getShaderStageInfo() };
-	mCleaner.push( [=]() { vertShader->cleanup(); fragShader->cleanup(); } );
+	createShaderStages();
+	System::Watcher()->addShaderFile( mVertShader->getFilepath(), [=]() { shaderUpdateCallback(); } );
+	System::Watcher()->addShaderFile( mFragShader->getFilepath(), [=]() { shaderUpdateCallback(); } );
 }
 
-void PlResolve2D::setupDescriptorSet() {}
+void PlResolve2D::createShaderStages() {
+	mVertShader = new Shader( "fill.vert", VK_SHADER_STAGE_VERTEX_BIT );
+	mFragShader = new Shader( "fill.frag", VK_SHADER_STAGE_FRAGMENT_BIT );
+
+	mShaderStages = { mVertShader->getShaderStageInfo(), mFragShader->getShaderStageInfo() };
+	mCleaner.push( [=]() { mVertShader->cleanup(); mFragShader->cleanup(); } );
+}
+
+void PlResolve2D::setupDescriptorSet() {
+	mValid = true;
+}
 
 void PlResolve2D::setupPipelineLayout() {
+	LOG( "PlResolve2D::setupPipelineLayout()" );
 	VkDevice device = System::Device()->getDevice();
 	
     VkPushConstantRange pushConstantRange{};
@@ -55,8 +65,19 @@ void PlResolve2D::update( const RenderTime renderTime ) {
 }
 
 void PlResolve2D::draw( VkCommandBuffer cmdBuffer ) {
+	if (!mValid) return;
+
  	vkCmdPushConstants( cmdBuffer, mPipelineLayout, VK_SHADER_STAGE_FRAGMENT_BIT, 0, sizeof( FrameInfo ), &mFrameInfo );
 
 	vkCmdBindPipeline( cmdBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, mPipeline );
 	vkCmdDraw( cmdBuffer, 3, 1, 0, 0 );
+}
+
+void PlResolve2D::shaderUpdateCallback() {
+	LOG( "PlResolve2D::shaderUpdateCallback()" );
+	System::Device()->waitQueueIdle();
+	cleanup();
+	createShaderStages();
+	setupPipelineLayout();
+	createGraphicsPipeline();
 }

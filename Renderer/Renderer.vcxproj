@@ -204,6 +204,7 @@ xcopy $(ProjectDir)shaders $(OutDir)shaders /E /H /C /I /Y</Command>
     <ClCompile Include="sources\resources\shader.cpp" />
     <ClCompile Include="sources\structure\2DStructure\structure2D.cpp" />
     <ClCompile Include="sources\window\sdlwindow.cpp" />
+    <ClCompile Include="sources\watcher.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sources\core\cmdManager.h" />
@@ -232,6 +233,7 @@ xcopy $(ProjectDir)shaders $(OutDir)shaders /E /H /C /I /Y</Command>
     <ClInclude Include="sources\system.h" />
     <ClInclude Include="sources\common.h" />
     <ClInclude Include="sources\window\sdlwindow.h" />
+    <ClInclude Include="sources\watcher.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\glsl\fill.frag" />

@@ -7,11 +7,15 @@
 #include <core/renderpass.h>
 
 Pipeline::~Pipeline() {}
-Pipeline::Pipeline( Renderpass* renderpass, const u32 subpass ) : 
-	mRenderpassPtr(renderpass),
-	mSubpass(subpass) {}
+Pipeline::Pipeline( Renderpass* renderpass, const u32 subpass ) :
+	mRenderpassPtr( renderpass ),
+	mSubpass( subpass ),
+	mValid( false) {}
 
-void Pipeline::cleanup() { mCleaner.flush("Pipeline"); }
+void Pipeline::cleanup() {
+	mValid = false;
+	mCleaner.flush( "Pipeline" );
+}
 
 VkPipeline Pipeline::get() { return mPipeline; }
 
@@ -124,6 +128,7 @@ void Pipeline::createGraphicsPipeline() {
 	VkResult result = vkCreateGraphicsPipelines(device, VK_NULL_HANDLE, 1, &pipelineInfo, nullptr, &mPipeline );
 	ASSERT_VKERROR(result, "failed to create graphics pipeline!");
 	mCleaner.push([=](){ vkDestroyPipeline(device, mPipeline, nullptr); });
+	mValid = true;
 }
 
 void Pipeline::createComputePipeline() {

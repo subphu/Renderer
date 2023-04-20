@@ -46,6 +46,7 @@ public:
 	
 protected:
 	Cleaner mCleaner;
+	bool mValid;
 
 	vector<VkPipelineShaderStageCreateInfo> mShaderStages;
 	VkPipelineVertexInputStateCreateInfo    mVertexInputInfo;

@@ -24,7 +24,8 @@ typedef glm::uvec2 uvec2;
 typedef glm::uvec3 uvec3;
 typedef glm::uvec4 uvec4;
 
-typedef std::string string;
+typedef std::wstring wstring;
+typedef std::string  string;
 
 typedef std::chrono::high_resolution_clock ChronoTime;
 typedef std::chrono::duration<float, std::chrono::seconds::period> TimeDif;

@@ -14,12 +14,13 @@ public:
 	void createModule( const string filepath );
 	void createStageInfo( const VkShaderStageFlagBits stage, const char* entryPoint = "main" );
 	
+	const string getFilepath();
 	const VkPipelineShaderStageCreateInfo& getShaderStageInfo();
 
 	static const string CompileShader( const string filepath );
 	
 private:
-	Cleaner mCleaner;
+	Cleaner mCleaner{};
 	
 	string mFilepath;
 

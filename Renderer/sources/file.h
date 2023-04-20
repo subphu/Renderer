@@ -41,7 +41,13 @@ public:
 	}
 
 	static const string GetShaderPath( const string filename ) {
-		string path = std::filesystem::current_path().append( System::Settings()->glslDir ).append( filename ).string();
+		string path = std::filesystem::path( GetShaderRootDir() ).append(filename).string();
+		LOG( path );
+		return path;
+	}
+
+	static const string GetShaderRootDir() {
+		string path = std::filesystem::current_path().append( System::Settings()->glslDir ).string();
 		LOG( path );
 		return path;
 	}

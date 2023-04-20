@@ -1,6 +1,7 @@
 #pragma once
 
 #include <settings.h>
+#include <Watcher.h>
 #include <window/sdlwindow.h>
 #include <core/deviceManager.h>
 #include <core/cmdManager.h>
@@ -28,6 +29,7 @@ private:
 	CmdManager*		mCmdManagerPtr	  = nullptr;
 	Swapchain*		mSwapchainPtr	  = nullptr;
 	Descriptor*		mDescriptorPtr	  = nullptr;
+	Watcher*		mWatcher		  = nullptr;
 
 	Structure* mStructurePtr = nullptr;
 };

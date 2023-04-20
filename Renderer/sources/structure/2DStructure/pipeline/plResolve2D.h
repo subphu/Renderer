@@ -3,6 +3,7 @@
 #include <core/pipeline.h>
 
 class Renderpass;
+class Shader;
 
 class PlResolve2D : public Pipeline {
 
@@ -10,6 +11,7 @@ public:
 	~PlResolve2D();
 	PlResolve2D( Renderpass* renderpass, const u32 subpass );
 
+	void createShaderStages();
 	void setupShaderStages() override;
 	void setupDescriptorSet() override;
 	void setupPipelineLayout() override;
@@ -17,6 +19,8 @@ public:
 
 	void update( RenderTime renderTime ) override;
 	void draw( VkCommandBuffer cmdBuffer ) override;
+
+	void shaderUpdateCallback();
 
 private:
 	
@@ -32,5 +36,7 @@ private:
 	};
 
 	FrameInfo mFrameInfo{};
+	Shader* mVertShader;
+	Shader* mFragShader;
 };
 
